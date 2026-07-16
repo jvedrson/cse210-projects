@@ -4,12 +4,22 @@ public class Journal
 {
     public List<Entry> _entries = new List<Entry>();
 
-    public void SaveEntry(Entry entry)
+    public void AddEntry(Entry entry)
     {
 
     }
 
-    public void ListEntries()
+    public void DisplayAll()
+    {
+
+    }
+
+    public void SaveToFile(string filename)
+    {
+
+    }
+
+    public void LoadFromFile(string filename)
     {
 
     }

@@ -11,14 +11,4 @@ class Program
     {
 
     }
-
-    static void SaveFile(string filename, Journal journal)
-    {
-
-    }
-
-    static void LoadFile(string filename, Journal journal)
-    {
-
-    }
 }
