@@ -1,5 +1,14 @@
 using System;
 
+/*
+The program exceeds the basic requirements; to improve it, I added two more
+options to the menu: Edit and Delete.This would allow the user more flexibility,
+and I thought it was important to do this with the end user in mind.
+
+To achieve this, I focused on finding the tasks in the list, so I created a function
+called `GetEntry` that takes the ID as an input and returns either Entry or null.
+This makes it easy to determine whether to continue with the action.
+*/
 class Program
 {
     static void Main(string[] args)
