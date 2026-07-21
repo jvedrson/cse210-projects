@@ -7,21 +7,50 @@ public class Scripture
 
     public Scripture(Reference reference, string text)
     {
+        _reference = reference;
+        string[] splitText = text.Split(" ");
 
+        foreach (var item in splitText)
+        {
+            _words.Add(new Word(item));
+        }
     }
 
     public void HideRandomWords(int numbersToHide)
     {
+        Random randomGenerator = new Random();
+        int totalHiddenWords = 0;
 
+        while (totalHiddenWords < numbersToHide && !IsCompletelyHidden())
+        {
+            Word word = _words[randomGenerator.Next(0, _words.Count)];
+            if (!word.IsHidden())
+            {
+                word.Hide();
+                ++totalHiddenWords;
+            }
+        }
     }
 
     public string GetDisplayText()
     {
-        return null;
+        string newText = "";
+        foreach (var word in _words)
+        {
+            newText += " " + word.GetDisplayText();
+        }
+        return $"{_reference.GetDisplayText()} {newText}";
     }
 
     public bool IsCompletelyHidden()
     {
-        return false;
+        foreach (var word in _words)
+        {
+            if (!word.IsHidden())
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
