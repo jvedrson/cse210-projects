@@ -1,3 +1,5 @@
+using System;
+
 public class Activity
 {
     private string _name;
@@ -41,24 +43,66 @@ public class Activity
 
     public void DisplayStartingMessage()
     {
-        Console.WriteLine($"Welcome to the {_name} Activity\n");
+        Console.Clear();
+        Console.WriteLine($"Welcome to the {_name} Activity.");
+        Console.WriteLine();
         Console.WriteLine(_description);
-        Console.Write("\nHow long, in seconds, would you like for your session? ");
+        Console.WriteLine();
+        Console.Write("How long, in seconds, would you like for your session? ");
+        string input = Console.ReadLine();
+        int duration;
+        while (!int.TryParse(input, out duration) || duration <= 0)
+        {
+            Console.Write("Please enter a positive whole number of seconds: ");
+            input = Console.ReadLine();
+        }
+        SetDuration(duration);
+
+        Console.Clear();
+        Console.WriteLine("Get ready...");
+        ShowSpinner(3);
     }
 
     public void DisplayEndingMessage()
     {
-        Console.WriteLine("\nWell done!!");
-        Console.WriteLine($"\nYou have completed another {_duration} seconds of the {_name} Activity.");
+        Console.WriteLine();
+        Console.WriteLine("Well done!!");
+        ShowSpinner(3);
+        Console.WriteLine();
+        Console.WriteLine($"You have completed another {_duration} seconds of the {_name} Activity.");
+        ShowSpinner(3);
     }
 
     public void ShowSpinner(int seconds)
     {
+        DateTime endTime = DateTime.Now.AddSeconds(seconds);
+        string[] frames = { "|", "/", "-", "\\" };
+        int frameIndex = 0;
 
+        while (DateTime.Now < endTime)
+        {
+            string frame = frames[frameIndex % frames.Length];
+            Console.Write(frame);
+            Thread.Sleep(250);
+            Console.Write("\b \b");
+            frameIndex++;
+        }
+
+        Console.WriteLine();
     }
-    
-    public void ShowCountDown(int secons)
+
+    public void ShowCountDown(int seconds)
     {
+        for (int i = seconds; i > 0; i--)
+        {
+            Console.Write(i);
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+        }
 
+        Console.WriteLine();
     }
+
+    // For my log system using with RunActivity() method
+    public virtual void Run() {}
 }
