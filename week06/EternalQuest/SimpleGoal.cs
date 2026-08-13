@@ -12,15 +12,21 @@ public class SimpleGoal : Goal
 
     public override void RecordEvent()
     {
+        _isComplete = true;
+    }
+
+    public void SetIsComplete(bool isComplete)
+    {
+        _isComplete = isComplete;
     }
 
     public override bool IsComplete()
     {
-        return false;
+        return _isComplete;
     }
 
     public override string GetStringRepresentation()
     {
-        return "";
+        return $"SimpleGoal:{_shortName},{_description},{_points},{_isComplete}";
     }
 }

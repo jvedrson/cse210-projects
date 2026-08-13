@@ -9,6 +9,7 @@ public class EternalGoal : Goal
 
     public override void RecordEvent()
     {
+        // Eternal goals are never complete, but each recording grants points.
     }
 
     public override bool IsComplete()
@@ -18,6 +19,6 @@ public class EternalGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        return "";
+        return $"EternalGoal:{_shortName},{_description},{_points}";
     }
 }
